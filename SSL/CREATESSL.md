@@ -115,14 +115,14 @@ Spring Boot uses a Java Keystore (JKS) or PKCS12 format for SSL/TLS certificates
 ### Example: Convert .pem to .p12 or .jks
 1. Combine the certificate and private key into a .p12 (PKCS12) file:
      If you have a certificate (certificate.pem) and private key (private.pem), you can combine them into a .p12 file with OpenSSL, and then import it into a Java keystore.
-   ```bash
+```bash
      openssl pkcs12 -export -in certificate.pem -inkey private.pem -out keystore.p12
 ```
   * certificate.pem: The certificate file in PEM format.
   * private.pem: The private key file in PEM format.
   * keystore.p12: The output file in PKCS12 format.
 You will be asked to set an export password. Keep it in mind, as you will need it later.
-1. Convert the .p12 file to a .jks keystore (if needed):
+2. Convert the .p12 file to a .jks keystore (if needed):
    While Spring Boot can work with PKCS12, some configurations may require a JKS keystore format. If you need a .jks file, you can convert it with the keytool utility:
  ```bash
     keytool -importkeystore -srckeystore keystore.p12 -srcstoretype PKCS12 -destkeystore keystore.jks -deststoretype JKS
